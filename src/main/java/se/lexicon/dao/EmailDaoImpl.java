@@ -11,7 +11,25 @@ import java.util.stream.Collectors;
 
 public class EmailDaoImpl implements EmailDao {
 
-    private List<Email> emailList = new ArrayList<>();
+    private List<Email> emailList;
+
+
+    //create an object of EmailDaoImpl
+    private static EmailDaoImpl instance;
+
+    //make the constructor private so that this class cannot be
+    //instantiated
+    private EmailDaoImpl(){
+        emailList = new ArrayList<>();
+    }
+
+    //Get the only object available
+    public static EmailDaoImpl getInstance(){
+        if (instance == null) {
+            instance = new EmailDaoImpl();
+        }
+        return instance;
+    }
 
 
     @Override
